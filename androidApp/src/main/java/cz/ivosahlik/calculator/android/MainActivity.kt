@@ -73,7 +73,6 @@ class MainActivity : ComponentActivity() {
                             onCLick = {})
                         digitButton(text = ".", onCLick = {})
                         operatorButton(text = "=", onCLick = {})
-
                     }
                 }
             }
