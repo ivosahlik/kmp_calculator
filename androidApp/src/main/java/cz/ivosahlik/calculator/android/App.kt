@@ -45,9 +45,7 @@ fun App() {
             )
             buttons.forEach { rowButtons ->
                 Row (
-                    Modifier
-                        .align(Alignment.Start)
-                        .fillMaxWidth()
+                    Modifier.align(Alignment.Start).fillMaxWidth()
                 ) {
                     rowButtons.forEachIndexed { index, item ->
                         when {

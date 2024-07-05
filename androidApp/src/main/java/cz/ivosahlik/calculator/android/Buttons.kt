@@ -20,6 +20,7 @@ fun extraButton(
     onCLick: (String) -> Unit
 ) {
     flatButton(
+        modifier = modifier,
         text = text,
         backgroundColor = Color.DarkGray,
         onCLick = onCLick
@@ -32,6 +33,7 @@ fun digitButton(
     onCLick: (String) -> Unit
 ) {
     flatButton(
+        modifier = modifier,
         text = text,
         backgroundColor = Color.Gray,
         onCLick = onCLick
@@ -45,6 +47,7 @@ fun operatorButton(
     onCLick: (String) -> Unit
 ) {
     flatButton(
+        modifier = modifier,
         text = text,
         backgroundColor = Color.Yellow,
         onCLick = onCLick
