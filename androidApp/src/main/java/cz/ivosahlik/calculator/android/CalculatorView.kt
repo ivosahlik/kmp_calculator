@@ -7,9 +7,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,9 +32,11 @@ fun CalculatorView() {
     }
     val operators = remember { listOf("/", "*", "+", "-", "=") }
     val extraOperators = remember { listOf("AC", "+/-", "%") }
+    val viewModel = remember { CalculatorViewModel() }
+    val state = viewModel.state.collectAsState()
     Column(Modifier.fillMaxSize()) {
         Spacer(modifier = Modifier.height(30.dp))
-        Text(text = "0",
+        Text(text = state.value.currentOperand,
             modifier = Modifier
                 .fillMaxWidth()
                 .background(color = Color.DarkGray),
@@ -54,21 +56,22 @@ fun CalculatorView() {
                             extraButton(
                                 modifier = Modifier.weight(1f),
                                 text = item,
-                                onCLick = { /** TODO */ }
+                                onCLick = viewModel::onOperatorCLick
                             )
                         }
                         operators.contains(item) -> {
                             operatorButton(
                                 modifier = Modifier.weight(1f),
                                 text = item,
-                                onCLick = { /** TODO */ })
+                                onCLick = viewModel::onOperatorCLick
+                            )
                         } else -> {
                         digitButton(
                             modifier = Modifier.weight(
                                 if (rowButtons.size < 4 && index == 0) 2f else 1f
                             ),
                             text = item,
-                            onCLick = { /** TODO */ }
+                            onCLick = viewModel::onOperatorCLick
                         )}
                     }
                 }
