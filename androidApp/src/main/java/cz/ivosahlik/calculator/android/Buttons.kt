@@ -1,5 +1,6 @@
 package cz.ivosahlik.calculator.android
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -62,10 +63,11 @@ fun flatButton(
         onClick = { onCLick(text) },
         modifier = modifier
             .heightIn(min = 80.dp)
-            .padding(1.dp),
+            .padding(1.dp)
+            .background(backgroundColor),
         colors = ButtonDefaults.buttonColors(
+            containerColor = backgroundColor,
             contentColor = contentColor,
-            containerColor = backgroundColor
         )
     ) {
         Text(
