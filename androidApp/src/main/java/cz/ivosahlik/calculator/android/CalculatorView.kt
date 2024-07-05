@@ -32,48 +32,47 @@ fun CalculatorView() {
     }
     val operators = remember { listOf("/", "*", "+", "-", "=") }
     val extraOperators = remember { listOf("AC", "+/-", "%") }
-        Column(Modifier.fillMaxSize()) {
-            Spacer(modifier = Modifier.height(30.dp))
-            Text(text = "0",
-                modifier = Modifier
+    Column(Modifier.fillMaxSize()) {
+        Spacer(modifier = Modifier.height(30.dp))
+        Text(text = "0",
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(color = Color.DarkGray),
+            textAlign = TextAlign.End,
+            color = Color.White,
+            style = TextStyle(fontSize = 45.sp)
+        )
+        buttons.forEach { rowButtons ->
+            Row (
+                Modifier
+                    .align(Alignment.Start)
                     .fillMaxWidth()
-                    .background(color = Color.DarkGray),
-                textAlign = TextAlign.End,
-                color = Color.White,
-                style = TextStyle(fontSize = 45.sp)
-            )
-            buttons.forEach { rowButtons ->
-                Row (
-                    Modifier
-                        .align(Alignment.Start)
-                        .fillMaxWidth()
-                ) {
-                    rowButtons.forEachIndexed { index, item ->
-                        when {
-                            extraOperators.contains(item) -> {
-                                extraButton(
-                                    modifier = Modifier.weight(1f),
-                                    text = item,
-                                    onCLick = { /** TODO */ }
-                                )
-                            }
-                            operators.contains(item) -> {
-                                operatorButton(
-                                    modifier = Modifier.weight(1f),
-                                    text = item,
-                                    onCLick = { /** TODO */ })
-                            } else -> {
-                            digitButton(
-                                modifier = Modifier.weight(
-                                    if (rowButtons.size < 4 && index == 0) 2f else 1f
-                                ),
+            ) {
+                rowButtons.forEachIndexed { index, item ->
+                    when {
+                        extraOperators.contains(item) -> {
+                            extraButton(
+                                modifier = Modifier.weight(1f),
                                 text = item,
                                 onCLick = { /** TODO */ }
-                            )}
+                            )
                         }
+                        operators.contains(item) -> {
+                            operatorButton(
+                                modifier = Modifier.weight(1f),
+                                text = item,
+                                onCLick = { /** TODO */ })
+                        } else -> {
+                        digitButton(
+                            modifier = Modifier.weight(
+                                if (rowButtons.size < 4 && index == 0) 2f else 1f
+                            ),
+                            text = item,
+                            onCLick = { /** TODO */ }
+                        )}
                     }
                 }
             }
         }
-
+    }
 }

@@ -8,15 +8,15 @@ class CalculatorViewModel {
     private val _state = MutableStateFlow(CalculatorState())
     val state = _state.asStateFlow()
 
-    fun onOperatorCLick(button: String) {
-        when (button) {
+    fun onOperatorCLick(buttonValue: String) {
+        when (buttonValue) {
             "AC" -> { _state.update { CalculatorState() } }
             "+/-" -> { unaryMinus() }
             "+", "-", "/", "%", "*" -> {
                 _state.update {
                     it.copy(
                         firstOperand = it.currentOperand,
-                        operator = button,
+                        operator = buttonValue,
                         currentOperand = "0"
                     )
                 }
@@ -27,7 +27,11 @@ class CalculatorViewModel {
             "=" -> {
                 calculateResult()
             }
-            else -> { }
+            else -> {
+                _state.update {
+                    it.copy(currentOperand = "${it.currentOperand.trimStart('0')}$buttonValue")
+                }
+            }
         }
     }
 
