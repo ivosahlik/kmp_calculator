@@ -49,7 +49,7 @@ fun operatorButton(
     flatButton(
         modifier = modifier,
         text = text,
-        backgroundColor = Color.Yellow,
+        backgroundColor = Color(242, 163, 60, 255),
         onCLick = onCLick
     )
 }

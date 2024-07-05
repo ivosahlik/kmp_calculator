@@ -32,7 +32,7 @@ fun App() {
     }
     val operators = remember { listOf("/", "*", "+", "-", "=") }
     val extraOperators = remember { listOf("AC", "+/-", "%") }
-    MaterialTheme {
+    MaterialTheme() {
         Column(Modifier.fillMaxSize()) {
             Spacer(modifier = Modifier.height(30.dp))
             Text(text = "0",
@@ -45,7 +45,9 @@ fun App() {
             )
             buttons.forEach { rowButtons ->
                 Row (
-                    Modifier.align(Alignment.Start).fillMaxWidth()
+                    Modifier
+                        .align(Alignment.Start)
+                        .fillMaxWidth()
                 ) {
                     rowButtons.forEachIndexed { index, item ->
                         when {
